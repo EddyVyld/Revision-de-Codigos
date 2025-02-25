@@ -1,60 +1,71 @@
 // Tenemos un li de productos
 
+// Cree una carpeta Assets para almacenar las imagenes
+// Puse en las declaraciones ";"
+/* Como ahora estan en una carpeta los pruductos cambie la direccion */
 const productos = [
-  {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
-  {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./taco-azul.jpg"},
-  {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
-  {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
-  {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
+  {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./assets/taco-negro.jpg"},
+  {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./assets/taco-azul.jpg"},
+  {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./assets/bota-negra.jpg"},
+  {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./assets/bota-azul.jpg"},
+  {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./assets/zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+const listaProductos = document.getElementById("lista-de-productos"); /* Guiandome del HTML preferi cambiar getElementsByName por getElementsById por hacer referencia a este. De igual manera li lo cambie por listaProductos para evitar confuciones */
+const input = document.querySelector('input'); /* En este caso no era necesario poner el punto, si fuera una clase si hubiera sido necesario. De igual manera $i lo cambie por input para evitar confuciones  */
 
+
+
+/* En todo este bloque de codigo se utilizo var, lo cambie por let */
 for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+  let producto = document.createElement("div"); /* Preferi cambiar d por producto y evitar confucion  */
+  producto.classList.add("producto");
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+  let titulo = document.createElement("p"); /* Preferi cambiar t por titulo y evitar confucion */
+  titulo.classList.add("titulo");
+  titulo.textContent = productos[i].nombre;
   
-  var imagen = document.createElement("img");
+  let imagen = document.createElement("img");
   imagen.setAttribute('src', productos[i].img);
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+  producto.appendChild(titulo);
+  producto.appendChild(imagen);
 
-  li.appendChild(d)
+  listaProductos.appendChild(producto);
 }
 
-displayProductos(productos)
+/* displayProductos(productos); */
+
+
 const botonDeFiltro = document.querySelector("button");
 
 botonDeFiltro.onclick = function() {
-  while (li.firstChild) {
-    li.removeChild(li.firstChild);
+  while (listaProductos.firstChild) {
+    listaProductos.removeChild(listaProductos.firstChild);
   }
 
-  const texto = $i.value;
+  const texto = input.value; /* $i lo cambie por input */
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
+
+
+ /*  Dentro de esta funcion nuevamente se utiliza mucho var, lo cambie por let */
   for (let i = 0; i < productosFiltrados.length; i++) {
-    var d = document.createElement("div")
-    d.classList.add("producto")
+    let d = document.createElement("div");
+    d.classList.add("producto");
   
-    var ti = document.createElement("p")
-    ti.classList.add("titulo")
-    ti.textContent = productosFiltrados[i].nombre
+    let ti = document.createElement("p");
+    ti.classList.add("titulo");
+    ti.textContent = productosFiltrados[i].nombre;
     
-    var imagen = document.createElement("img");
+    let imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
   
-    d.appendChild(ti)
-    d.appendChild(imagen)
+    d.appendChild(ti);
+    d.appendChild(imagen);
   
-    li.appendChild(d)
+    listaProductos.appendChild(d); /* li lo cambie por listaProductos */
   }
 }
 
