@@ -34,7 +34,7 @@ for (let i = 0; i < productos.length; i++) {
   listaProductos.appendChild(producto);
 }
 
-/* displayProductos(productos); */
+/* displayProductos(productos); */  // Es una funcion que llama a una funcion que no existe
 
 
 const botonDeFiltro = document.querySelector("button");
